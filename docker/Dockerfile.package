@@ -5,8 +5,8 @@ WORKDIR /home
 # COMMON BUILD TOOLS
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y -q --no-install-recommends build-essential autoconf make git wget pciutils cpio libtool lsb-release ca-certificates pkg-config bison flex libcurl4-gnutls-dev zlib1g-dev
 
-RUN git config --global http.proxy ${http_proxy}
-RUN git config --global https.proxy ${https_proxy}
+#RUN git config --global http.proxy ${http_proxy}
+#RUN git config --global https.proxy ${https_proxy}
 
 # Install cmake
 ARG CMAKE_VER=3.13.1
@@ -301,8 +301,11 @@ RUN cd neo && \
 #ARG OPENVINO_BUNDLE=l_openvino_toolkit_p_2020.1.023
 #ARG OPENVINO_URL=http://registrationcenter-download.intel.com/akdlm/irc_nas/16345/l_openvino_toolkit_p_2020.1.023.tgz
 # 2020.2
-ARG OPENVINO_BUNDLE=l_openvino_toolkit_p_2020.2.120
-ARG OPENVINO_URL=http://registrationcenter-download.intel.com/akdlm/irc_nas/16612/l_openvino_toolkit_p_2020.2.120.tgz
+#ARG OPENVINO_BUNDLE=l_openvino_toolkit_p_2020.2.120
+#ARG OPENVINO_URL=http://registrationcenter-download.intel.com/akdlm/irc_nas/16612/l_openvino_toolkit_p_2020.2.120.tgz
+
+ARG OPENVINO_BUNDLE=l_openvino_toolkit_p_2020.4.287
+ARG OPENVINO_URL=http://registrationcenter-download.intel.com/akdlm/irc_nas/16803/l_openvino_toolkit_p_2020.4.287.tgz
 
 #Install OpenVino dependencies
 RUN  DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends cpio joe nano sudo unzip wget less \
@@ -389,9 +392,9 @@ ADD patch /root/patch
 ARG FFMPEG_VER=n4.2
 ARG FFMPEG_REPO=https://github.com/FFmpeg/FFmpeg/archive/${FFMPEG_VER}.tar.gz
 
-ARG FFMPEG_MA_RELEASE_VER=0.5
-ARG FFMPEG_MA_RELEASE_URL=https://github.com/VCDP/FFmpeg-patch/archive/v${FFMPEG_MA_RELEASE_VER}.tar.gz
-ARG FFMPEG_MA_PATH=/home/FFmpeg-patch-${FFMPEG_MA_RELEASE_VER}
+ARG FFMPEG_MA_RELEASE_VER=0.7
+ARG FFMPEG_MA_RELEASE_URL=https://github.com/lgz235/FFmpeg_patch_new/archive/v${FFMPEG_MA_RELEASE_VER}.tar.gz
+ARG FFMPEG_MA_PATH=/home/FFmpeg_patch_new-${FFMPEG_MA_RELEASE_VER}
 RUN wget -O - ${FFMPEG_MA_RELEASE_URL} | tar xz
 
 # Compile FFmpeg
